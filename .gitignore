@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Temporary Files
+*.tmp
+
+# Sensitive Files
+.env
+secrets.txt
+
+# Packet Captures
+*.pcap
+*.pcapng
