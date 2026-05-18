@@ -213,7 +213,7 @@ The author is not responsible for misuse of this project.
 
 # Author
 
-Shaan
+Sk Aminul Irfan
 Aspiring Cybersecurity Enthusiast 🛡️
 
 GitHub:
