@@ -1,7 +1,5 @@
-Replace your current `README.md` with this upgraded version 🚀
 
-````md
-# 🛡️ QR Phishing Awareness Lab 2.0
+ 🛡️ QR Phishing Awareness Lab 2.0
 
 A modern cybersecurity awareness and training platform demonstrating how QR-code phishing attacks, also known as **Quishing**, can trick users into visiting fake login pages.
 
