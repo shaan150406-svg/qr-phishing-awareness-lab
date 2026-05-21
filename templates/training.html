@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Phishing Training - Complete Guide</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .training-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        h1 { color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 10px; }
+        .scenario {
+            background: #f8f9fa;
+            border-left: 4px solid #ff6b6b;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .best-practice {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .quiz {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .training-container { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="training-container">
+        <h1>🛡️ Complete Guide to QR Code Phishing (Quishing)</h1>
+        
+        <h2>📌 What is Quishing?</h2>
+        <p>Quishing (QR code phishing) is a cyberattack where malicious QR codes are used to trick users into visiting fake websites, downloading malware, or revealing sensitive information.</p>
+        
+        <div class="scenario">
+            <h3>🔴 Real-World Attack Scenarios:</h3>
+            <ul>
+                <li><strong>Parking Meter Scams:</strong> Fake QR codes placed on parking meters leading to fake payment pages</li>
+                <li><strong>Restaurant Menu Attacks:</strong> QR codes on tables replaced with malicious versions</li>
+                <li><strong>Email Attachments:</strong> QR codes in phishing emails bypassing spam filters</li>
+                <li><strong>Package Delivery Scams:</strong> Fake delivery notices with QR codes</li>
+                <li><strong>Job Offer Scams:</strong> QR codes in fake interview invitations</li>
+            </ul>
+        </div>
+        
+        <h2>⚠️ How to Identify Suspicious QR Codes</h2>
+        <div class="best-practice">
+            <h3>✅ Inspection Checklist:</h3>
+            <ol>
+                <li><strong>Physical Inspection:</strong> Look for stickers over original codes</li>
+                <li><strong>URL Preview:</strong> Most scanners show the URL - check for misspellings</li>
+                <li><strong>HTTPS Check:</strong> Ensure the website uses encryption</li>
+                <li><strong>Domain Verification:</strong> Is the domain legitimate? (e.g., google.com vs g00gle.com)</li>
+                <li><strong>Unexpected Requests:</strong> Legitimate QR codes rarely ask for login credentials</li>
+            </ol>
+        </div>
+        
+        <h2>🛡️ Protection Measures</h2>
+        <div class="best-practice">
+            <h3>🔒 Security Best Practices:</h3>
+            <ul>
+                <li>Use a QR scanner with built-in security features</li>
+                <li>Enable URL preview before automatically opening links</li>
+                <li>Install mobile security software with phishing protection</li>
+                <li>Never enter credentials after scanning an unexpected QR code</li>
+                <li>Enable Multi-Factor Authentication (MFA) on all accounts</li>
+                <li>Report suspicious QR codes to security teams</li>
+                <li>Keep your device's OS and apps updated</li>
+            </ul>
+        </div>
+        
+        <div class="quiz">
+            <h3>📝 Quick Security Quiz</h3>
+            <form id="quizForm">
+                <p><strong>1. What should you do before scanning a QR code?</strong></p>
+                <label><input type="radio" name="q1" value="correct"> Preview the URL if possible</label><br>
+                <label><input type="radio" name="q1" value="wrong"> Scan it immediately</label><br>
+                <label><input type="radio" name="q1" value="wrong"> Share it with friends first</label><br>
+                
+                <p><strong>2. Which is a sign of a suspicious QR code?</strong></p>
+                <label><input type="radio" name="q2" value="correct"> A sticker placed over an existing code</label><br>
+                <label><input type="radio" name="q2" value="wrong"> Printed on official restaurant menu</label><br>
+                <label><input type="radio" name="q2" value="wrong"> On a company's website</label><br>
+                
+                <p><strong>3. What should you do after falling for a phishing QR code?</strong></p>
+                <label><input type="radio" name="q3" value="correct"> Change passwords immediately and report it</label><br>
+                <label><input type="radio" name="q3" value="wrong"> Ignore it and hope for the best</label><br>
+                <label><input type="radio" name="q3" value="wrong"> Scan it again to check</label><br>
+                
+                <button type="button" onclick="checkQuiz()" style="margin-top: 20px; padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 5px; cursor: pointer;">Check Answers</button>
+            </form>
+            <p id="quizResult" style="margin-top: 20px; font-weight: bold;"></p>
+        </div>
+        
+        <h2>📚 Additional Resources</h2>
+        <ul>
+            <li>🔗 <a href="https://www.cisa.gov/secure-our-world" target="_blank">CISA - Secure Our World</a></li>
+            <li>🔗 <a href="https://www.ncsc.gov.uk/guidance/qr-code-security-guidance" target="_blank">NCSC QR Code Security Guidance</a></li>
+            <li>🔗 <a href="/admin/dashboard" target="_blank">View Training Dashboard</a></li>
+        </ul>
+        
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #e9ecef; border-radius: 10px;">
+            <p>⚠️ <strong>Remember:</strong> When in doubt, don't scan it out! Always verify QR codes before scanning.</p>
+            <a href="/" style="display: inline-block; margin-top: 10px; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px;">← Back to Training Lab</a>
+        </div>
+    </div>
+    
+    <script>
+        function checkQuiz() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            
+            if (!q1 || !q2 || !q3) {
+                document.getElementById('quizResult').innerHTML = '⚠️ Please answer all questions!';
+                return;
+            }
+            
+            let score = 0;
+            if (q1.value === 'correct') score++;
+            if (q2.value === 'correct') score++;
+            if (q3.value === 'correct') score++;
+            
+            if (score === 3) {
+                document.getElementById('quizResult').innerHTML = '🎉 Excellent! You understand QR phishing risks! Share this knowledge with colleagues.';
+            } else if (score >= 2) {
+                document.getElementById('quizResult').innerHTML = '👍 Good job! Review the training material to improve your security awareness.';
+            } else {
+                document.getElementById('quizResult').innerHTML = '📚 Please review the training material above and try again. Security awareness is crucial!';
+            }
+        }
+    </script>
+</body>
+</html>

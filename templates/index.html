@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>QR Phishing Awareness Lab - Secure Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Additional inline styles for better mobile experience */
+        .security-scanner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            color: white;
+        }
+        .risk-meter {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .risk-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff00, #ffff00, #ff0000);
+            transition: width 0.3s ease;
+        }
+        .scanner-result {
+            background: rgba(255,255,255,0.95);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 15px; margin: 10px; }
+            h1 { font-size: 1.8rem; }
+            .security-tips { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning-banner">
+            ⚠️ EDUCATIONAL AWARENESS TRAINING - QR PHISHING SIMULATION ⚠️
+        </div>
+        
+        <h1>📱 Secure Document Access</h1>
+        <p class="subtitle">Please verify your credentials to access the secure document</p>
+        
+        <!-- QR Risk Scanner Tool -->
+        <div class="security-scanner">
+            <h3>🔍 QR Code Risk Scanner (Educational Tool)</h3>
+            <p>Paste any QR code URL to analyze its safety:</p>
+            <input type="text" id="qrUrlInput" placeholder="https://example.com/login" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 5px; border: none;">
+            <button onclick="analyzeQRRisk()" style="background: #ff6b6b; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Analyze Risk</button>
+            <div id="riskAnalysis" class="scanner-result" style="display: none;"></div>
+        </div>
+        
+        <!-- Fake Login Form -->
+        <div class="login-box">
+            <div class="qr-visual">
+                <img src="{{ url_for('static', filename='img/qr-demo.png') }}" alt="Scan QR Code" onerror="this.src='https://via.placeholder.com/200?text=QR+Code'">
+                <p class="qr-note">Scan this QR code with your mobile device</p>
+            </div>
+            
+            <form action="/fake-login" method="POST" id="loginForm">
+                <div class="input-group">
+                    <label>📧 Email Address</label>
+                    <input type="email" name="email" required placeholder="your@email.com">
+                </div>
+                
+                <div class="input-group">
+                    <label>🔒 Password</label>
+                    <input type="password" name="password" required placeholder="••••••••">
+                    <small class="security-note">⚠️ In real phishing attacks, this would steal your password</small>
+                </div>
+                
+                <button type="submit" class="login-btn">Verify Access</button>
+            </form>
+        </div>
+        
+        <!-- Security Awareness Section -->
+        <div class="security-tips">
+            <h3>🛡️ QR Code Security Awareness</h3>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">🔍</div>
+                    <h4>Inspect Before Scanning</h4>
+                    <p>Check if QR codes are physically tampered with or placed over legitimate ones</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔗</div>
+                    <h4>Preview the URL</h4>
+                    <p>Most QR scanners show the URL before visiting - always check it!</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">⚡</div>
+                    <h4>Use Security Software</h4>
+                    <p>Install QR scanners with built-in security features and URL checking</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🏢</div>
+                    <h4>Verify Source</h4>
+                    <p>Don't scan QR codes from unknown sources or unexpected emails</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Live Demo Counter -->
+        <div class="demo-counter">
+            <p>📊 Training Statistics (This Session)</p>
+            <div class="counter-stats" id="stats">
+                <span>🔄 Loading...</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // QR Risk Analyzer
+        async function analyzeQRRisk() {
+            const url = document.getElementById('qrUrlInput').value;
+            if (!url) {
+                alert('Please enter a URL to analyze');
+                return;
+            }
+            
+            const response = await fetch(`/api/scan-qr-risk?url=${encodeURIComponent(url)}`);
+            const analysis = await response.json();
+            
+            const resultDiv = document.getElementById('riskAnalysis');
+            resultDiv.style.display = 'block';
+            
+            let riskColor = analysis.risk_level.includes('HIGH') ? '#ff0000' : 
+                           analysis.risk_level.includes('MEDIUM') ? '#ffa500' : '#00cc00';
+            
+            resultDiv.innerHTML = `
+                <h4 style="color: ${riskColor}">${analysis.risk_level}</h4>
+                <div class="risk-meter">
+                    <div class="risk-fill" style="width: ${(analysis.score/8)*100}%"></div>
+                </div>
+                <p><strong>Risk Score:</strong> ${analysis.score}/8</p>
+                <p><strong>Findings:</strong></p>
+                <ul>
+                    ${analysis.findings.map(f => `<li>${f}</li>`).join('') || '<li>No obvious red flags detected</li>'}
+                </ul>
+                <p><strong>Recommendation:</strong> ${analysis.recommendation}</p>
+                <small>⚠️ This is an educational tool - always verify QR codes before scanning!</small>
+            `;
+        }
+        
+        // Fetch live stats
+        async function loadStats() {
+            const response = await fetch('/admin/dashboard');
+            // This would need an API endpoint, but for demo we'll show placeholder
+            document.getElementById('stats').innerHTML = `
+                <span>📱 QR Scans: Simulated</span>
+                <span>⚠️ Attempts: Educational Demo</span>
+                <span>🛡️ Stay Vigilant!</span>
+            `;
+        }
+        
+        loadStats();
+        
+        // Add warning on form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            if (!confirm('⚠️ EDUCATIONAL AWARENESS: This is a simulated phishing page.\n\nIn real life, never enter credentials after scanning an unexpected QR code.\n\nProceed with the simulation?')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚠️ Security Awareness - You've Been Trained!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .warning-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 20px;
+            color: white;
+            animation: pulse 2s;
+        }
+        @keyframes pulse {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .analysis-box {
+            background: rgba(255,255,255,0.95);
+            color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-primary {
+            background: #ff6b6b;
+            color: white;
+        }
+        .btn-secondary {
+            background: #4ecdc4;
+            color: white;
+        }
+        @media (max-width: 600px) {
+            .warning-container { margin: 20px; padding: 20px; }
+            .action-buttons { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <div class="warning-container">
+        <h1>⚠️ SECURITY AWARENESS TRAINING ⚠️</h1>
+        <h2>You've Been Part of a Phishing Simulation!</h2>
+        
+        <div class="analysis-box">
+            <h3>🔍 What Just Happened?</h3>
+            <p>You scanned a QR code that led to a <strong>simulated phishing page</strong>. This is an educational demonstration of <strong>Quishing (QR phishing)</strong> attacks.</p>
+            
+            {% if url_analysis %}
+            <h4>URL Analysis Results:</h4>
+            <div style="background: #f0f0f0; padding: 15px; border-radius: 10px; margin: 10px 0;">
+                <p><strong>{{ url_analysis.risk_level }}</strong></p>
+                {% if url_analysis.findings %}
+                <p><strong>Security Findings:</strong></p>
+                <ul>
+                    {% for finding in url_analysis.findings %}
+                    <li>{{ finding }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+                <p><strong>Recommendation:</strong> {{ url_analysis.recommendation }}</p>
+            </div>
+            {% endif %}
+            
+            <h4>📧 Demo Credential Entered:</h4>
+            <p><code>{{ email }}</code> (No real data stored - this is educational only)</p>
+            
+            <h4>🚨 In a Real Attack:</h4>
+            <ul>
+                <li>Your credentials would be stolen immediately</li>
+                <li>Attackers could access your real accounts</li>
+                <li>Your personal data could be compromised</li>
+                <li>Your organization could face a security breach</li>
+            </ul>
+        </div>
+        
+        <div class="analysis-box">
+            <h3>🛡️ How to Protect Yourself from QR Phishing:</h3>
+            <ol>
+                <li><strong>Always preview URLs</strong> before visiting - most QR scanners show the link</li>
+                <li><strong>Check for tampering</strong> - Look for stickers placed over legitimate QR codes</li>
+                <li><strong>Verify the source</strong> - Don't scan codes from unknown or unexpected sources</li>
+                <li><strong>Look for HTTPS</strong> - Ensure the website has a valid SSL certificate</li>
+                <li><strong>Use security software</strong> - Install QR scanners with URL checking</li>
+                <li><strong>Enable 2FA</strong> - Multi-factor authentication protects even if credentials are stolen</li>
+                <li><strong>Report suspicious QR codes</strong> - Notify security teams about potential threats</li>
+            </ol>
+        </div>
+        
+        <div class="action-buttons">
+            <a href="/" class="btn btn-primary">🔄 Try Again (Training Mode)</a>
+            <a href="/training-material" class="btn btn-secondary">📚 Advanced Training</a>
+            <a href="/admin/dashboard" class="btn btn-secondary">📊 View Statistics</a>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9rem;">
+            <small>⚠️ This is an educational simulation. No real credentials were stored.<br>
+            In case of a real phishing attempt, immediately change your passwords and report to IT security.</small>
+        </p>
+    </div>
+</body>
+</html>
