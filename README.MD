@@ -100,7 +100,7 @@ qr-phishing-awareness-lab/
 
 ## 🏠 Main Awareness Portal
 
-![Home Page](screenshots/home-page.png)
+![Home Page](screenshots/home_page.png)
 
 ---
 
@@ -118,7 +118,7 @@ qr-phishing-awareness-lab/
 
 ## 🔳 QR Code Demo
 
-![QR Code](screenshots/qr-code.png)
+![QR Code](screenshots/qr_code.png)
 
 ---
 
